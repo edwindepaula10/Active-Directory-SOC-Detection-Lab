@@ -2,7 +2,7 @@
 
 **By Edwin De Paula**
 
-> A self-built blue-team detection environment simulating a small enterprise network: Active Directory domain, centralized Splunk logging, Sysmon-instrumented endpoints, and a Parrot OS attacker. Adversary techniques are executed with Atomic Red Team, then detected end-to-end in Splunk and mapped to MITRE ATT&CK.
+> A self-built blue-team detection environment simulating a small enterprise network: Active Directory domain, centralized Splunk logging, Sysmon-instrumented endpoints, and a Kali Linux attacker. Adversary techniques are executed with Atomic Red Team, then detected end-to-end in Splunk and mapped to MITRE ATT&CK.
 
 ![Status](https://img.shields.io/badge/status-complete-success)
 ![Focus](https://img.shields.io/badge/focus-Blue%20Team%20%2F%20Detection-blue)
@@ -30,7 +30,7 @@ This project documents the design and construction of a functional **Security Op
 
 The lab demonstrates the complete **attack → log → detection** cycle:
 
-- An attacker (Parrot OS) executes techniques against domain-joined endpoints.
+- An attacker (Kali Linux) executes techniques against domain-joined endpoints.
 - Endpoints generate Windows Security and **Sysmon** telemetry.
 - A **Splunk Universal Forwarder** ships logs to a central Splunk indexer.
 - Detections are built in Splunk and mapped to **MITRE ATT&CK**.
@@ -50,7 +50,7 @@ The lab demonstrates the complete **attack → log → detection** cycle:
 | **Splunk Server** | `192.168.10.10` | Central indexer / search head |
 | **Active Directory** | `192.168.10.7` | Domain Controller (`dwn.lab`), Splunk UF, Sysmon |
 | **Windows 10** | `192.168.10.100` (static) | Domain-joined endpoint, Splunk UF, Sysmon, Atomic Red Team |
-| **Parrot OS** | `192.168.10.250` | Attacker / offensive tooling |
+| **Kali Linux** | `192.168.10.250` | Attacker / offensive tooling |
 
 ---
 
@@ -72,8 +72,8 @@ The lab demonstrates the complete **attack → log → detection** cycle:
 - **Atomic Red Team** for adversary emulation.
 - Static IP for deterministic lab behavior (see [Network Configuration](#network-configuration)).
 
-### Parrot OS Attacker
-- Primary offensive machine (not Kali — Parrot is the daily driver here).
+### Kali Linux Attacker
+- Primary offensive machine for the lab, loaded with standard offensive tooling.
 - Tools used: `nmap`, `hydra`, `crowbar`.
 
 ---
@@ -121,7 +121,7 @@ Two MITRE ATT&CK techniques were executed end-to-end and are detectable in the p
 
 ### T1110 — Brute Force (RDP)
 
-**Attack (from Parrot):**
+**Attack (from Kali):**
 ```bash
 # Confirm RDP is listening
 nmap -p 3389 192.168.10.100
@@ -154,7 +154,7 @@ index=* (EventCode=4625 OR EventCode=4624)
 
 ![Splunk detecting the RDP brute-force: a burst of 4625 failures followed by a 4624 Logon Type 10](images/splunk-t1110-detection.png)
 
-<!-- SCREENSHOT: Splunk search results showing the 4625 burst + 4624 Logon Type 10 from the Parrot IP. This is the most important screenshot — it proves the full pipeline works end-to-end. Save as images/splunk-t1110-detection.png -->
+<!-- SCREENSHOT: Splunk search results showing the 4625 burst + 4624 Logon Type 10 from the Kali IP. This is the most important screenshot — it proves the full pipeline works end-to-end. Save as images/splunk-t1110-detection.png -->
 
 ---
 
@@ -267,4 +267,4 @@ df -h /opt/splunk/
 **Built as a hands-on blue-team / detection engineering project.**
 *Demonstrating SOC pipeline design, adversary emulation, and ATT&CK-mapped detection.*
 
-**Author:** Edwin De Paula — Information Security student @ ITLA
+**Author:** Edwin De Paula — Information Security student @ ITLA, transitioning into cybersecurity.
