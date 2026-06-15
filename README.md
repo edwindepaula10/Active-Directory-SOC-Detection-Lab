@@ -145,11 +145,8 @@ hydra -l jdepaula -P passwords.txt rdp://192.168.10.100
 **Detection pattern:** many `4625` events from a single source IP (`192.168.10.250`), followed by a `4624` with `Logon_Type=10` from the same source.
 
 ```
-index=* (EventCode=4625 OR EventCode=4624)
-| stats count(eval(EventCode=4625)) as failures
-        count(eval(EventCode=4624 AND Logon_Type=10)) as rdp_success
-        by src_ip
-| where failures > 5 AND rdp_success > 0
+index="endpoint" EventCode=4624 kali
+
 ```
 
 ![Splunk detecting the RDP brute-force: a burst of 4625 failures followed by a 4624 Logon Type 10](images/splunk-t1110-detection.png)
