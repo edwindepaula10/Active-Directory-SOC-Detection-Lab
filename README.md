@@ -1,5 +1,7 @@
 # Active Directory SOC Detection Lab
 
+**By Edwin De Paula**
+
 > A self-built blue-team detection environment simulating a small enterprise network: Active Directory domain, centralized Splunk logging, Sysmon-instrumented endpoints, and a Parrot OS attacker. Adversary techniques are executed with Atomic Red Team, then detected end-to-end in Splunk and mapped to MITRE ATT&CK.
 
 ![Status](https://img.shields.io/badge/status-complete-success)
@@ -264,3 +266,5 @@ df -h /opt/splunk/
 
 **Built as a hands-on blue-team / detection engineering project.**
 *Demonstrating SOC pipeline design, adversary emulation, and ATT&CK-mapped detection.*
+
+**Author:** Edwin De Paula — Information Security student @ ITLA
