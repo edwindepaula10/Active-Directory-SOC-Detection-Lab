@@ -92,7 +92,7 @@ All VMs share a custom **VMnet in NAT mode** on `192.168.10.0/24`, gateway at `.
 | IP (Win10) | `192.168.10.100` |
 | Subnet Mask | `255.255.255.0` |
 | Gateway | `192.168.10.1` |
-| DNS | `8.8.8.8` |
+| DNS | `192.168.10.7` |
 
 > **Takeaway:** In a detection lab, deterministic networking matters. A flapping endpoint IP breaks Universal Forwarder connectivity mid-exercise and wastes time chasing phantom Splunk problems.
 
