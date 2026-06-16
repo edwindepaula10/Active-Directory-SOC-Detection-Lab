@@ -184,9 +184,7 @@ Invoke-AtomicTest T1136.001
 | Sysmon `1` | Process creation — `net user` / `New-LocalUser` execution |
 
 ```
-index=* EventCode=4720
-| table _time, ComputerName, Account_Name, Security_ID
-| `correlate with Sysmon EventCode=1 for the creating process`
+index="endpoint" New-LocalUser powershell
 ```
 
 ![Splunk showing Event ID 4720 account-creation events from the atomic tests](images/splunk-t1136-detection.png)
