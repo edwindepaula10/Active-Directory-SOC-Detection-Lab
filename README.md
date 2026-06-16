@@ -262,4 +262,4 @@ df -h /opt/splunk/
 **Built as a hands-on blue-team / detection engineering project.**
 *Demonstrating SOC pipeline design, adversary emulation, and ATT&CK-mapped detection.*
 
-**Author:** Edwin De Paula — Information Security student @ ITLA, transitioning into cybersecurity.
+**Author:** Edwin De Paula — Information Security @ ITLA · Cybersecurity Intern @ Hire Horatio
